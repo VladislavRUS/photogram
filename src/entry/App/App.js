@@ -8,6 +8,8 @@ import Profile from '../../views/Profile';
 import { BAR_IMAGES, getBarIcon } from '../../constants/barImages';
 import * as Routes from '../../constants/routes';
 
+export const TAB_NAVIGATOR_HEIGHT = 42;
+
 const headerStyle = {
   backgroundColor: '#f02861'
 };
@@ -22,7 +24,7 @@ const PhotosStack = createStackNavigator(
     Photos
   },
   {
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: () => ({
       title: Routes.PHOTOS,
       headerStyle,
       headerTitleStyle
@@ -41,18 +43,9 @@ PhotosStack.navigationOptions = ({ navigation }) => {
   };
 };
 
-const ProfileStack = createStackNavigator(
-  {
-    Profile
-  },
-  {
-    navigationOptions: ({ navigation }) => ({
-      title: Routes.PROFILE,
-      headerStyle,
-      headerTitleStyle
-    })
-  }
-);
+const ProfileStack = createStackNavigator({
+  Profile
+});
 
 ProfileStack.navigationOptions = ({ navigation }) => {
   return {
@@ -72,11 +65,12 @@ const createNavigator = () =>
       ProfileStack
     },
     {
+      initialRouteName: Routes.PROFILE_STACK,
       navigationOptions: () => ({
         tabBarOptions: {
           showLabel: false,
           style: {
-            height: 42
+            height: TAB_NAVIGATOR_HEIGHT
           }
         }
       })
