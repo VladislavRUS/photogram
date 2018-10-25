@@ -1,47 +1,52 @@
 import React from 'react';
 import CommentActivity from './CommentActivity';
 import { Wrapper } from './Activity.styles';
-import user1 from '../../assets/users/1.png';
 import FollowActivity from './FollowActivity';
+import LikeActivity from './LikeActivity';
+import getActivities, { ACTIVITY_TYPES } from '../../mocks/activities';
+import { observer } from 'mobx-react';
+import { observable } from 'mobx';
 
-const ACTIVITY_TYPES = {
-  COMMENT: 'comment',
-  FOLLOW: 'follow',
-  LIKE: 'like'
-};
+const LOADING_DELAY = 100;
 
-const activities = [
-  {
-    user: {
-      image: user1,
-      name: 'Frank Block'
-    },
-    type: 'comment',
-    text: 'Very nice shot, love it!',
-    date: '3h'
-  },
-  {
-    user: {
-      image: user1,
-      name: 'Frank Block'
-    },
-    type: ACTIVITY_TYPES.FOLLOW,
-    date: '3h'
-  }
-];
-
+@observer
 class Activity extends React.Component {
+  @observable
+  isLoading = false;
+  @observable
+  activities = null;
+
+  constructor(props) {
+    super(props);
+
+    this.activities = getActivities();
+  }
+
+  onRefresh = () => {
+    this.isLoading = true;
+
+    setTimeout(() => {
+      this.activities = getActivities();
+      this.isLoading = false;
+    }, LOADING_DELAY);
+  };
+
   render() {
     return (
-      <Wrapper>
-        {activities.map(item => {
+      <Wrapper
+        data={this.activities}
+        onRefresh={this.onRefresh}
+        refreshing={this.isLoading}
+        renderItem={({ item }) => {
           if (item.type === ACTIVITY_TYPES.COMMENT) {
             return <CommentActivity comment={item} />;
           } else if (item.type === ACTIVITY_TYPES.FOLLOW) {
             return <FollowActivity follow={item} />;
+          } else if (item.type === ACTIVITY_TYPES.LIKE) {
+            return <LikeActivity like={item} />;
           }
-        })}
-      </Wrapper>
+        }}
+      />
     );
   }
 }

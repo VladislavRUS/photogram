@@ -8,17 +8,19 @@
   },
   "dependencies": {
     "babel-eslint": "^10.0.1",
-    "react": "16.6.0-alpha.8af6728",
-    "react-native": "0.57.3",
+    "faker": "^4.1.0",
     "mobx": "4.5.0",
     "mobx-react": "5.2.8",
+    "moment": "^2.22.2",
+    "react": "16.6.0-alpha.8af6728",
+    "react-native": "0.57.3",
     "react-navigation": "^2.18.0",
     "styled-components": "^4.0.2"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/plugin-transform-flow-strip-types": "^7.0.0",
     "@babel/plugin-proposal-decorators": "^7.1.2",
+    "@babel/plugin-transform-flow-strip-types": "^7.0.0",
     "babel-jest": "23.6.0",
     "eslint": "^5.6.1",
     "eslint-config-prettier": "^2.9.0",

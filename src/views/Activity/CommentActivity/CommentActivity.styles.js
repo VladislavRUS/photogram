@@ -50,15 +50,24 @@ export const SimpleText = styled.Text`
   font-weight: 400;
 `;
 
+export const CommentWrapper = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-right: 20px;
+`;
+
 export const ItalicText = styled.Text`
   color: #494949;
   font-size: 13px;
   font-style: italic;
   letter-spacing: 0.52px;
   font-weight: 400;
+  flex-wrap: wrap;
+  padding-right: 20px;
 `;
 
 export const Date = styled.Text`
+  padding-top: 2px;
   font-size: 9px;
   color: #cecece;
   font-weight: 400;

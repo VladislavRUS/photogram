@@ -8,6 +8,7 @@ import {
   Name,
   Highlight,
   SimpleText,
+  CommentWrapper,
   ItalicText,
   Date
 } from './CommentActivity.styles';
@@ -26,7 +27,9 @@ class CommentActivity extends React.Component {
             <Name>{comment.user.name}</Name>
             <Highlight>commented</Highlight>
             <SimpleText>on your photo:</SimpleText>
-            <ItalicText>{'"' + comment.text + '"'}</ItalicText>
+            <CommentWrapper>
+              <ItalicText>{'"' + comment.text + '"'}</ItalicText>
+            </CommentWrapper>
           </Content>
           <Date>{comment.date}</Date>
         </Info>
