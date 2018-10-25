@@ -2,6 +2,9 @@ import PhotosActiveImage from '../assets/Photos/Photos_active.png';
 import PhotosInactiveImage from '../assets/Photos/Photos_inactive.png';
 import ProfileActiveImage from '../assets/Profile/Profile_active.png';
 import ProfileInactiveImage from '../assets/Profile/Profile_inactive.png';
+import ActivityActiveImage from '../assets/Activity/Activity_active.png';
+import ActivityInactiveImage from '../assets/Activity/Activity_inactive.png';
+
 import { Image } from 'react-native';
 import React from 'react';
 
@@ -9,7 +12,9 @@ export const BAR_IMAGES = {
   PhotosActiveImage,
   PhotosInactiveImage,
   ProfileActiveImage,
-  ProfileInactiveImage
+  ProfileInactiveImage,
+  ActivityActiveImage,
+  ActivityInactiveImage
 };
 
 export const getBarIcon = (isFocused, activeImage, inactiveImage) => {

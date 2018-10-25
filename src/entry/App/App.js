@@ -5,6 +5,7 @@ import {
 } from 'react-navigation';
 import Photos from '../../views/Photos';
 import Profile from '../../views/Profile';
+import Activity from '../../views/Activity';
 import { BAR_IMAGES, getBarIcon } from '../../constants/barImages';
 import * as Routes from '../../constants/routes';
 
@@ -58,14 +59,39 @@ ProfileStack.navigationOptions = ({ navigation }) => {
   };
 };
 
+const ActivityStack = createStackNavigator(
+  {
+    Activity
+  },
+  {
+    navigationOptions: () => ({
+      title: Routes.ACTIVITY,
+      headerStyle,
+      headerTitleStyle
+    })
+  }
+);
+
+ActivityStack.navigationOptions = ({ navigation }) => {
+  return {
+    tabBarIcon: () =>
+      getBarIcon(
+        navigation.isFocused(),
+        BAR_IMAGES.ActivityActiveImage,
+        BAR_IMAGES.ActivityInactiveImage
+      )
+  };
+};
+
 const createNavigator = () =>
   createBottomTabNavigator(
     {
       PhotosStack,
+      ActivityStack,
       ProfileStack
     },
     {
-      initialRouteName: Routes.PROFILE_STACK,
+      initialRouteName: Routes.ACTIVITY_STACK,
       navigationOptions: () => ({
         tabBarOptions: {
           showLabel: false,

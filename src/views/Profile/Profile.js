@@ -16,6 +16,8 @@ import {
   Images,
   ImageWrapper,
   TouchableImageWrapper,
+  AnimatedBackground,
+  AnimatedImageWrapper,
   Image
 } from './Profile.styles';
 
@@ -185,7 +187,7 @@ class Profile extends React.Component {
               ref={element => this.imagesRef.push(element)}
               style={{ width: imageSize, height: imageSize }}
               onPress={() => this.onImage(img, idx)}
-              activeOpacity={0.8}
+              activeOpacity={0.9}
             >
               <Image source={img} resizeMode={'contain'} />
             </ImageWrapper>
@@ -195,22 +197,15 @@ class Profile extends React.Component {
         {this.showSharedImage && (
           <TouchableImageWrapper
             onPress={this.onSharedWrapper}
-            activeOpacity={0.8}
+            activeOpacity={0.9}
           >
-            <Animated.View
+            <AnimatedBackground
               style={{
-                position: 'absolute',
-                left: 0,
-                right: 0,
-                bottom: 0,
-                top: 0,
-                opacity: this.sharedImageBackgroundOpacity,
-                backgroundColor: '#000'
+                opacity: this.sharedImageBackgroundOpacity
               }}
             >
-              <Animated.View
+              <AnimatedImageWrapper
                 style={{
-                  position: 'absolute',
                   left: this.sharedImagePosition.left,
                   top: this.sharedImagePosition.top,
                   width: this.sharedImageSize,
@@ -218,8 +213,8 @@ class Profile extends React.Component {
                 }}
               >
                 <Image source={this.sharedImg} resizeMode={'contain'} />
-              </Animated.View>
-            </Animated.View>
+              </AnimatedImageWrapper>
+            </AnimatedBackground>
           </TouchableImageWrapper>
         )}
       </Wrapper>
