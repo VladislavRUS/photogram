@@ -6,8 +6,14 @@ import {
 import Photos from '../../views/Photos';
 import Profile from '../../views/Profile';
 import Activity from '../../views/Activity';
-import { BAR_IMAGES, getBarIcon } from '../../constants/barImages';
+import {
+  BAR_IMAGES,
+  getBarButton,
+  getBarIcon
+} from '../../constants/barImages';
 import * as Routes from '../../constants/routes';
+import Camera from '../../views/Camera';
+import ImagePicker from 'react-native-image-picker';
 
 export const TAB_NAVIGATOR_HEIGHT = 42;
 
@@ -44,21 +50,6 @@ PhotosStack.navigationOptions = ({ navigation }) => {
   };
 };
 
-const ProfileStack = createStackNavigator({
-  Profile
-});
-
-ProfileStack.navigationOptions = ({ navigation }) => {
-  return {
-    tabBarIcon: () =>
-      getBarIcon(
-        navigation.isFocused(),
-        BAR_IMAGES.ProfileActiveImage,
-        BAR_IMAGES.ProfileInactiveImage
-      )
-  };
-};
-
 const ActivityStack = createStackNavigator(
   {
     Activity
@@ -83,11 +74,55 @@ ActivityStack.navigationOptions = ({ navigation }) => {
   };
 };
 
+const CameraStack = createStackNavigator(
+  {
+    Camera
+  },
+  {
+    initialRouteName: Routes.CAMERA,
+    mode: 'modal',
+    headerMode: 'none'
+  }
+);
+
+CameraStack.navigationOptions = ({ navigation }) => {
+  return {
+    tabBarIcon: () =>
+      getBarButton(BAR_IMAGES.Camera, () => {
+        const options = {};
+
+        ImagePicker.showImagePicker(options, response => {
+          if (!response.didCancel && !response.error) {
+            navigation.navigate(Routes.CAMERA, {
+              uri: response.uri
+            });
+          }
+        });
+      })
+  };
+};
+
+const ProfileStack = createStackNavigator({
+  Profile
+});
+
+ProfileStack.navigationOptions = ({ navigation }) => {
+  return {
+    tabBarIcon: () =>
+      getBarIcon(
+        navigation.isFocused(),
+        BAR_IMAGES.ProfileActiveImage,
+        BAR_IMAGES.ProfileInactiveImage
+      )
+  };
+};
+
 const createNavigator = () =>
   createBottomTabNavigator(
     {
       PhotosStack,
       ActivityStack,
+      CameraStack,
       ProfileStack
     },
     {

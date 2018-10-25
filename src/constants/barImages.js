@@ -4,8 +4,9 @@ import ProfileActiveImage from '../assets/Profile/Profile_active.png';
 import ProfileInactiveImage from '../assets/Profile/Profile_inactive.png';
 import ActivityActiveImage from '../assets/Activity/Activity_active.png';
 import ActivityInactiveImage from '../assets/Activity/Activity_inactive.png';
+import Camera from '../assets/Camera/Camera.png';
 
-import { Image } from 'react-native';
+import { Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 
 export const BAR_IMAGES = {
@@ -14,7 +15,8 @@ export const BAR_IMAGES = {
   ProfileActiveImage,
   ProfileInactiveImage,
   ActivityActiveImage,
-  ActivityInactiveImage
+  ActivityInactiveImage,
+  Camera
 };
 
 export const getBarIcon = (isFocused, activeImage, inactiveImage) => {
@@ -26,5 +28,13 @@ export const getBarIcon = (isFocused, activeImage, inactiveImage) => {
       resizeMode={'cover'}
       style={{ width: 18, height: 18 }}
     />
+  );
+};
+
+export const getBarButton = (source, onPress) => {
+  return (
+    <TouchableOpacity onPress={onPress} style={{ width: 50, height: 35 }}>
+      <Image source={source} style={{ width: '100%', height: '100%' }} />
+    </TouchableOpacity>
   );
 };
