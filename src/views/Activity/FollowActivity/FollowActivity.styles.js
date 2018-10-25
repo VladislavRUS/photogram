@@ -50,14 +50,6 @@ export const SimpleText = styled.Text`
   font-weight: 400;
 `;
 
-export const ItalicText = styled.Text`
-  color: #494949;
-  font-size: 13px;
-  font-style: italic;
-  letter-spacing: 0.52px;
-  font-weight: 400;
-`;
-
 export const Date = styled.Text`
   font-size: 9px;
   color: #cecece;
