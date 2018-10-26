@@ -4,6 +4,9 @@ import ProfileActiveImage from '../assets/Profile/Profile_active.png';
 import ProfileInactiveImage from '../assets/Profile/Profile_inactive.png';
 import ActivityActiveImage from '../assets/Activity/Activity_active.png';
 import ActivityInactiveImage from '../assets/Activity/Activity_inactive.png';
+import FavoritesActiveImage from '../assets/Favorites/Favorites_active.png';
+import FavoritesInactiveImage from '../assets/Favorites/Favorites_inactive.png';
+
 import Camera from '../assets/Camera/Camera.png';
 
 import { Image, TouchableOpacity } from 'react-native';
@@ -16,6 +19,8 @@ export const BAR_IMAGES = {
   ProfileInactiveImage,
   ActivityActiveImage,
   ActivityInactiveImage,
+  FavoritesActiveImage,
+  FavoritesInactiveImage,
   Camera
 };
 

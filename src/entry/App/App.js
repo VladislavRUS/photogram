@@ -14,6 +14,7 @@ import {
 import * as Routes from '../../constants/routes';
 import Camera from '../../views/Camera';
 import ImagePicker from 'react-native-image-picker';
+import Favorites from '../../views/Favorites';
 
 export const TAB_NAVIGATOR_HEIGHT = 42;
 
@@ -50,26 +51,26 @@ PhotosStack.navigationOptions = ({ navigation }) => {
   };
 };
 
-const ActivityStack = createStackNavigator(
+const FavoritesStack = createStackNavigator(
   {
-    Activity
+    Favorites
   },
   {
     navigationOptions: () => ({
-      title: Routes.ACTIVITY,
+      title: Routes.FAVORITES,
       headerStyle,
       headerTitleStyle
     })
   }
 );
 
-ActivityStack.navigationOptions = ({ navigation }) => {
+FavoritesStack.navigationOptions = ({ navigation }) => {
   return {
     tabBarIcon: () =>
       getBarIcon(
         navigation.isFocused(),
-        BAR_IMAGES.ActivityActiveImage,
-        BAR_IMAGES.ActivityInactiveImage
+        BAR_IMAGES.FavoritesActiveImage,
+        BAR_IMAGES.FavoritesInactiveImage
       )
   };
 };
@@ -102,6 +103,30 @@ CameraStack.navigationOptions = ({ navigation }) => {
   };
 };
 
+const ActivityStack = createStackNavigator(
+  {
+    Activity
+  },
+  {
+    navigationOptions: () => ({
+      title: Routes.ACTIVITY,
+      headerStyle,
+      headerTitleStyle
+    })
+  }
+);
+
+ActivityStack.navigationOptions = ({ navigation }) => {
+  return {
+    tabBarIcon: () =>
+      getBarIcon(
+        navigation.isFocused(),
+        BAR_IMAGES.ActivityActiveImage,
+        BAR_IMAGES.ActivityInactiveImage
+      )
+  };
+};
+
 const ProfileStack = createStackNavigator({
   Profile
 });
@@ -121,12 +146,13 @@ const createNavigator = () =>
   createBottomTabNavigator(
     {
       PhotosStack,
-      ActivityStack,
+      FavoritesStack,
       CameraStack,
+      ActivityStack,
       ProfileStack
     },
     {
-      initialRouteName: Routes.ACTIVITY_STACK,
+      initialRouteName: Routes.PROFILE_STACK,
       navigationOptions: () => ({
         tabBarOptions: {
           showLabel: false,

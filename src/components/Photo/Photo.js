@@ -23,14 +23,34 @@ import {
 import User from '../User';
 import LikeIcon from '../Icons/LikeIcon';
 import CommentIcon from '../Icons/CommentIcon';
+import { observer } from 'mobx-react';
+import { observable } from 'mobx';
 
+@observer
 class Photo extends React.Component {
+  @observable
+  isLikeActive = Math.random() > 0.5;
+  @observable
+  likesNumber = Math.floor(Math.random() * 100) + 1;
+  @observable
+  commentsNumber = Math.floor(Math.random() * 30);
+
+  onLikePress = () => {
+    this.isLikeActive = !this.isLikeActive;
+
+    if (this.isLikeActive) {
+      this.likesNumber++;
+    } else {
+      this.likesNumber--;
+    }
+  };
+
   render() {
     return (
       <Wrapper>
         <Header>
           <User user={this.props.user} showName={true} />
-          <Time>11m</Time>
+          <Time>{this.props.date}</Time>
         </Header>
         <PhotoContent>
           <Image source={this.props.image} />
@@ -40,17 +60,17 @@ class Photo extends React.Component {
             <LikeIconWrapper>
               <LikeIcon active={true} />
             </LikeIconWrapper>
-            <LikesCount>127 likes</LikesCount>
+            <LikesCount>{this.likesNumber} likes</LikesCount>
           </Likes>
           <Comments>
             <CommentIconWrapper>
               <CommentIcon active={true} />
             </CommentIconWrapper>
-            <CommentsCount>34 comments</CommentsCount>
+            <CommentsCount>{this.commentsNumber} comments</CommentsCount>
           </Comments>
           <Actions>
-            <Like>
-              <LikeIcon active={false} />
+            <Like onPress={this.onLikePress}>
+              <LikeIcon active={this.isLikeActive} />
             </Like>
             <Comment>
               <CommentIcon active={false} />

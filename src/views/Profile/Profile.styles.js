@@ -126,3 +126,16 @@ export const AnimatedBackground = styled(Animated.View)`
 export const AnimatedImageWrapper = styled(Animated.View)`
   position: absolute;
 `;
+
+export const SettingsImageWrapper = styled.TouchableOpacity`
+  position: absolute;
+  right: 15px;
+  top: 30px;
+  width: 14px;
+  height: 14px;
+`;
+
+export const SettingsImage = styled.Image`
+  width: 100%;
+  height: 100%;
+`;

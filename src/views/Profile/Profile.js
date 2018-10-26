@@ -18,40 +18,21 @@ import {
   TouchableImageWrapper,
   AnimatedBackground,
   AnimatedImageWrapper,
-  Image
+  Image,
+  SettingsImageWrapper,
+  SettingsImage
 } from './Profile.styles';
 
 import { Dimensions, Animated, Easing, StatusBar } from 'react-native';
-
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import cover from '../../assets/Profile/cover.png';
 import gradient from '../../assets/Profile/gradient.png';
 import profile from '../../assets/Profile/profile.png';
-
-import raccoon from '../../assets/Profile/raccoon.png';
-import ladybird from '../../assets/Profile/ladybird.png';
-import tree from '../../assets/Profile/tree.png';
-import flower from '../../assets/Profile/flower.png';
-import husky from '../../assets/Profile/husky.png';
-import butterfly from '../../assets/Profile/butterfly.png';
-import clouds from '../../assets/Profile/clouds.png';
-import earth from '../../assets/Profile/earth.png';
 import { TAB_NAVIGATOR_HEIGHT } from '../../entry/App';
-
-const images = [
-  raccoon,
-  ladybird,
-  tree,
-  flower,
-  husky,
-  butterfly,
-  clouds,
-  earth
-];
-const SCREEN_WIDTH = Dimensions.get('window').width;
+import images, { SCREEN_WIDTH, IMAGES_SIZE } from '../../mocks/images';
+import settingsImg from '../../assets/Profile/settings.png';
 const SCREEN_HEIGHT = Dimensions.get('window').height;
-const imageSize = SCREEN_WIDTH / 2;
 
 const animationConfig = {
   duration: 350,
@@ -83,7 +64,7 @@ class Profile extends React.Component {
     this.imagesRef[idx].measure((fx, fy, width, height, px, py) => {
       this.sharedImg = img;
       this.sharedImageBackgroundOpacity = new Animated.Value(0);
-      this.sharedImageSize = new Animated.Value(imageSize);
+      this.sharedImageSize = new Animated.Value(IMAGES_SIZE);
       this.sharedImagePosition = {
         left: new Animated.Value(px),
         top: new Animated.Value(this.scrollOffset + py)
@@ -156,6 +137,9 @@ class Profile extends React.Component {
         <Header>
           <Background source={cover} resizeMode={'cover'} />
           <Overlay source={gradient} resizeMode={'cover'} />
+          <SettingsImageWrapper>
+            <SettingsImage source={settingsImg} />
+          </SettingsImageWrapper>
           <UserInfo>
             <AvatarWrapper>
               <Avatar source={profile} resizeMode={'cover'} />
@@ -185,7 +169,7 @@ class Profile extends React.Component {
             <ImageWrapper
               key={idx}
               ref={element => this.imagesRef.push(element)}
-              style={{ width: imageSize, height: imageSize }}
+              style={{ width: IMAGES_SIZE, height: IMAGES_SIZE }}
               onPress={() => this.onImage(img, idx)}
               activeOpacity={0.9}
             >
