@@ -1,4 +1,4 @@
-### Photofram
+### Photogram
 Sample React-Native project
 Uses react-navigation, react-image-picker and mobx
 
